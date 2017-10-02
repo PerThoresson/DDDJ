@@ -1,0 +1,151 @@
+.history-title {
+  font-weight: normal;
+  span {
+    opacity: 0.25;
+  }
+}
+
+.history-container {
+  margin-top: 60px;
+  .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+  }
+}
+
+table.song-list {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: rgba(0,0,0,0.25);
+
+  h3, p {
+    margin: 0;
+    line-height: 1.3em;
+  }
+
+  thead tr {
+    border-bottom: none;
+  }
+
+  tr {
+    border-bottom: 1px solid rgba(255,255,255,0.05)
+  }
+
+  thead th {
+    text-align: left;
+    padding: 20px;
+    opacity: 0.2;
+    font-size: 0.8em;
+    background-color: rgba(0,0,0,0.5);
+
+  }
+
+  td {
+    padding: 20px;
+
+    p {
+      line-height: 1.4em;
+    }
+    p span {
+      font-size: 10px;
+      font-weight: bold;
+      text-align: right;
+    }
+  }
+
+  .image {
+    width: 100px;
+    height: 100px;
+    background-color: rgba(255,255,255,0.1);
+    background-size: cover;
+  }
+}
+
+.currently-playing {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .current-item {
+
+    overflow: hidden;
+
+    h3, p {
+      margin: 0;
+      line-height: 1.5em;
+    }
+
+    &.active {
+      opacity: 1;
+      box-shadow: 0 20px 40px 0 rgba(0,0,0,0.6);
+
+      .image {
+        background-color: #f1633b;
+      }
+    }
+
+    background-color: rgba(0,0,0,0.95);
+    opacity: 0.5;
+    width: 48%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .image {
+      width: 150px;
+      height: 150px;
+      flex-shrink: 0;
+      background: $white;
+
+      transition: all 250ms ease-in;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .item-content {
+      flex: 1 0 auto;
+      padding: 30px;
+      overflow: hidden;
+
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+    }
+  }
+}
+
+p.album {
+}
+
+#turntable.animate {
+  transform-origin: 50% 50%;
+  animation: rotate 2000ms infinite linear;
+}
+
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.playlist-save-modal {
+  input {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+}
+
+.save-button {
+  color: $accent;
+}
+
