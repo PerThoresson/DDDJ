@@ -1,5 +1,5 @@
-# datajockey-js
-Java service for the spotify hackathon project 'datajockey'
+# CDJ Service
+Java service for the spotify hackathon project 'DDDJ'
 
 ## Requirements
 Java 8 or higher
