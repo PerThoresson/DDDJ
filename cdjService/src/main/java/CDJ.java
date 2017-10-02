@@ -1,17 +1,9 @@
-import java.util.HashMap;
-import java.util.Map;
-
-class BeatLinkPlayer {
+class CDJ {
     private boolean master = false;
     private boolean onAir = false;
     private boolean playing = false;
     private String songName = "";
     private String artistName = "";
-    private Map<String, String> metadata = new HashMap<String, String>();
-
-    public BeatLinkPlayer() {
-
-    }
 
     public boolean isMaster() {
         return master;
@@ -45,18 +37,6 @@ class BeatLinkPlayer {
         this.artistName = artistName;
     }
 
-    public Map<String, String> getMetadata() {
-        return metadata;
-    }
-
-    public void addMetadataEntry(String identifier, String data) {
-        this.metadata.put(identifier, data);
-    }
-
-    public void removeMetadataEntry(String identifier) {
-        this.metadata.remove(identifier);
-    }
-
     public boolean isPlaying() {
         return playing;
     }
@@ -67,12 +47,11 @@ class BeatLinkPlayer {
 
     @Override
     public String toString() {
-        return "BeatLinkPlayer{" +
+        return "CDJ{" +
                 "master=" + master +
                 ", onAir=" + onAir +
                 ", songName='" + songName + '\'' +
-                ", artistName='" + artistName + '\'' +
-                ", metadata=" + metadata +
+                ", artistName='" + artistName +
                 '}';
     }
 }

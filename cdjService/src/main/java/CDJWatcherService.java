@@ -5,9 +5,9 @@ import org.deepsymmetry.beatlink.data.*;
 import java.net.SocketException;
 import java.util.*;
 
-class BeatLinkService {
+class CDJWatcherService {
 
-    private HashMap<Integer, BeatLinkPlayer> playerState = new HashMap<>();
+    private HashMap<Integer, CDJ> playerState = new HashMap<>();
     private DatabaseService database;
 
     void startService() throws InterruptedException {
@@ -24,15 +24,11 @@ class BeatLinkService {
 
         Set<DeviceAnnouncement> devices = DeviceFinder.getInstance().getCurrentDevices();
 
-        System.out.println(devices);
-
-        ArrayList beatLinkPlayers = new ArrayList();
-
         boolean cdjs[] = {false, false, false, false};
 
         devices.forEach(deviceAnnouncement -> {
             if (deviceAnnouncement.getName().startsWith("C")) { // Is CDJ
-                playerState.put(deviceAnnouncement.getNumber(), new BeatLinkPlayer());
+                playerState.put(deviceAnnouncement.getNumber(), new CDJ());
                 cdjs[deviceAnnouncement.getNumber()-1] = true;
             }
         });
@@ -56,7 +52,7 @@ class BeatLinkService {
         } catch (SocketException e) {
             e.printStackTrace();
         }
-        Thread.sleep(3000);
+        Thread.sleep(1000);
         System.out.println("Virtual CDJ started");
 
         try {
@@ -67,12 +63,18 @@ class BeatLinkService {
         Thread.sleep(1000);
         System.out.println("MetadataFinder started");
 
+        try {
+            TimeFinder.getInstance().start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("TimeFinder started");
 
         MetadataFinder.getInstance().addTrackMetadataListener(new TrackMetadataListener() {
 
             public void metadataChanged(TrackMetadataUpdate update) {
                 if (update != null && update.metadata != null) {
-                    BeatLinkPlayer currentState = playerState.get(update.player);
+                    CDJ currentState = playerState.get(update.player);
 
                     String newArtist = update.metadata.getArtist().label;
                     String newTitle = update.metadata.getTitle();
@@ -84,6 +86,7 @@ class BeatLinkService {
 
                     if (artistChanged || titleChanged) {
                         System.out.println("Updating state for new song on device " + update.player);
+
                         // Update local state
                         currentState.setArtistName(newArtist);
                         currentState.setSongName(newTitle);
@@ -101,17 +104,11 @@ class BeatLinkService {
             }
         });
 
-        try {
-            TimeFinder.getInstance().start();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
         VirtualCdj.getInstance().addUpdateListener(new DeviceUpdateListener() {
             @Override
             public void received(DeviceUpdate deviceUpdate) {
                 if (deviceUpdate instanceof CdjStatus) {
-                    BeatLinkPlayer currentState = playerState.get(deviceUpdate.getDeviceNumber());
+                    CDJ currentState = playerState.get(deviceUpdate.getDeviceNumber());
 
                     String artist = currentState.getArtistName();
                     String title = currentState.getSongName();

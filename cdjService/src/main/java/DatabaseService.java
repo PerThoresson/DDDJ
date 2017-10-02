@@ -9,7 +9,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.UnknownHostException;
 import java.util.Properties;
 
 class DatabaseService {
@@ -54,14 +53,14 @@ class DatabaseService {
     }
 
     private void getConnection() {
-        MongoClient mongo = null;
+        MongoClient mongo;
         mongo = new MongoClient(this.ip, this.port);
         DB db = mongo.getDB(this.name);
 
         this.connection = db;
     }
 
-    void updatePlayerState(BeatLinkPlayer player, int deviceNumber) {
+    void updatePlayerState(CDJ player, int deviceNumber) {
         DBCollection stateTable = connection.getCollection(stateTableName);
         String devNum = "" + deviceNumber;
         BasicDBObject newDocument = new BasicDBObject();
