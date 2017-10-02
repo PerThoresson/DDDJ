@@ -13,8 +13,6 @@ require('./main.scss')
 import { setToken } from './core/auth/actions'
 import axios from 'axios'
 
-
-// STORE SET UP
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore)
 const store = createStoreWithMiddleware(Reducers)
 

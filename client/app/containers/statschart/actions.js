@@ -1,7 +1,6 @@
 import { STATS_FETCH_START, STATS_FETCH_SUCCESS, STATS_FETCH_FAILED } from './constants'
 import axios from 'axios'
 
-
 function statsFetchStart(){
   return {
     type: STATS_FETCH_START

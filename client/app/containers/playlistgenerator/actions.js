@@ -1,7 +1,6 @@
 import  { SAVE_PLAYLIST_SUCCESS, SAVE_PLAYLIST_FAILED } from './constants'
 import axios from 'axios'
 
-
 function savePlaylistSuccess(){
   return {
     type: SAVE_PLAYLIST_SUCCESS
@@ -14,7 +13,6 @@ function savePlaylistFailed(){
   }
 }
 
-//
 export function savePlaylist(name){
   return (dispatch, getState) => {
     const token = getState().auth.token

@@ -1,7 +1,6 @@
 import { HISTORY_FETCH_START, HISTORY_FETCH_SUCCESS, HISTORY_FETCH_FAILED } from './constants'
 import axios from 'axios'
 
-
 function historyFetchStart(){
   return {
     type: HISTORY_FETCH_START

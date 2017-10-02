@@ -20,7 +20,6 @@ function fetchCurrentlyPlayingSuccess(current){
   }
 }
 
-
 export function fetchCurrentlyPlaying(){
   return (dispatch, getState) => {
     const { currently_playing } = getState()

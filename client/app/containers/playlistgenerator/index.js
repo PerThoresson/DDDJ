@@ -86,10 +86,6 @@ PlayListGenerator.propTypes = {
   savePlaylist: PropTypes.func
 }
 
-// We don't have to use state here
-/*function mapStateToProps(state){
-  return {}
-}*/
 
 function mapDispatchToProps(dispatch){
   return {
