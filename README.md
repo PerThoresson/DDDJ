@@ -16,6 +16,8 @@ Java
 ## Setup
 Connect your Mac to a switch connected CDJ2000Nexus and DJM900Nexus.
 
+Set environment variables `DDDJ_SPOTIFY_CLIENT_ID` and `DDDJ_SECRET_KEY`
+
 run `make all`
 
 run java project
